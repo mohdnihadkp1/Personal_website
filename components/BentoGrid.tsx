@@ -258,6 +258,65 @@ const BentoGrid: React.FC<BentoGridProps> = ({ onExpandProject, onSelectProject,
             <CVCard onOpen={onOpenCV} />
             
         </div>
+        
+        {/* Profile Modal */}
+        {isProfileOpen && (
+            <div 
+                className="fixed inset-0 z-[60] flex items-center justify-center bg-black/90 backdrop-blur-xl transition-all duration-300 animate-in fade-in"
+                onClick={closeProfile}
+                onMouseMove={handleMouseMove}
+            >
+                <div 
+                    ref={modalRef}
+                    className="relative max-w-md w-full mx-4 overflow-hidden rounded-3xl border border-white/20 bg-surface/10 shadow-2xl transition-all duration-100 ease-out p-1 backdrop-blur-3xl"
+                    onClick={(e) => e.stopPropagation()}
+                    style={{
+                        transform: `perspective(1000px) rotateX(${mousePosition.y}deg) rotateY(${-mousePosition.x}deg)`,
+                    }}
+                >
+                    <div className="relative overflow-hidden rounded-[20px] aspect-square group">
+                        <img 
+                            src={profileImage} 
+                            alt="Profile Large" 
+                            className="h-full w-full object-cover transition-transform duration-100 ease-out scale-110"
+                            style={{
+                                transform: `scale(1.15) translate(${-mousePosition.x}px, ${-mousePosition.y}px)`
+                            }}
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-80"></div>
+                        
+                        <div 
+                            className="absolute top-10 right-10 p-2 bg-white/10 backdrop-blur-md rounded-full border border-white/20"
+                            style={{ transform: `translate(${mousePosition.x * 1.5}px, ${mousePosition.y * 1.5}px)` }}
+                        >
+                            <Sparkles className="text-accent" size={24} />
+                        </div>
+
+                        <div className="absolute bottom-0 left-0 right-0 p-8 translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                            <h2 
+                                className="text-4xl font-black text-white mb-2 tracking-tight"
+                                style={{ transform: `translate(${mousePosition.x * 0.5}px, ${mousePosition.y * 0.5}px)` }}
+                            >
+                                {PORTFOLIO_OWNER}
+                            </h2>
+                            <p 
+                                className="text-lg text-gray-300 flex items-center gap-2 font-light"
+                                style={{ transform: `translate(${mousePosition.x * 0.3}px, ${mousePosition.y * 0.3}px)` }}
+                            >
+                                <div className="h-1 w-8 bg-accent rounded-full"></div>
+                                {PORTFOLIO_ROLE}
+                            </p>
+                        </div>
+                    </div>
+                    <button 
+                        onClick={closeProfile}
+                        className="absolute top-4 right-4 rounded-full bg-black/40 p-2 text-white hover:bg-white hover:text-black transition-all border border-white/10 backdrop-blur-md z-10 cursor-pointer hover:rotate-90 duration-300"
+                    >
+                        <X size={24} />
+                    </button>
+                </div>
+            </div>
+        )}
     </div>
   );
 };
