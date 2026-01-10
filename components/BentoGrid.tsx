@@ -111,7 +111,7 @@ const BentoGrid: React.FC<BentoGridProps> = ({ onExpandProject, onSelectProject,
                     Available for work
                 </div>
                 <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tighter text-gray-900 dark:text-white leading-[1.1] mb-2 transition-colors">
-                Hello, I'm <br />
+                <br/> {/* Hello , I am*/}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-secondary animate-gradient-x inline-block pb-2 bg-[length:200%_auto]">
                     {PORTFOLIO_OWNER}
                 </span>.
